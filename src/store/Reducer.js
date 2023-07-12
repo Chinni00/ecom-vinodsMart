@@ -5,7 +5,8 @@ const initialState={
   totalQuantity: 0,
   subTotal:0,
   changed:false,
-  token:localStorage.getItem('token')
+  token:localStorage.getItem('token'),
+  isLoading:false
 }
 const cartSlice = createSlice({
   name: "cart",
@@ -14,6 +15,9 @@ const cartSlice = createSlice({
     replaceCart(state, action) {
       state.totalQuantity = action.payload.totalQuantity;
       state.items = action.payload.items;
+    },
+    setLoader(state,action){
+       state.isLoading=action.payload
     },
     setToken(state,action){
        state.token=action.payload

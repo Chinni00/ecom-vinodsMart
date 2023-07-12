@@ -1,15 +1,14 @@
 
 import './App.css';
-import Navbar from './Components/Navbar';
 import Cart from './Pages/Cart';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
-import Product from './Pages/Product';
 import Register from './Pages/Register';
 import Products from './Components/Products';
 import {BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import { CartProvider } from './Pages/CartContext';
 import { useSelector } from 'react-redux';
+import ForgotPassword from './Pages/ForgotPassword';
 
 function App() {
   const token = useSelector(state=>state.cart.token);
@@ -24,6 +23,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="*" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
        </Routes>
     
     </div>

@@ -4,6 +4,9 @@ import { useState} from "react"
 import Navbar from "../Components/Navbar"
 import Announcement from "../Components/Announcement"
 import { useRef } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { cartActions } from "../store/Reducer"
+import Loader from "./Loader"
 
 
 const Container=styled.div`
@@ -53,6 +56,8 @@ cursor: pointer;
 
 const Register = () => {
     const [isValidate,setIsValidate] = useState(true)
+    const isLoading = useSelector(state=>state.cart.isLoading)
+    const dispatch = useDispatch()
     const inputFnameRef = useRef();
     const inputLnameRef = useRef();
     const inputUserNameRef = useRef();
@@ -61,6 +66,7 @@ const Register = () => {
     const inputConformPasswordRef = useRef();
  const formHandler =(e)=>{
   e.preventDefault();
+  dispatch(cartActions.setLoader(true))
 const enteredFname = inputFnameRef.current.value;
 const enteredLname = inputLnameRef.current.value;
 const enteredUserName = inputUserNameRef.current.value;
@@ -84,6 +90,7 @@ if(enteredPassword !==enteredConformPassword){
         'Content-Type':'application/json'
     }
  }).then(res=>{
+    dispatch(cartActions.setLoader(false))
     if(res.ok){
        res.json().then(data=>{
          console.log(data)
@@ -106,6 +113,7 @@ if(enteredPassword !==enteredConformPassword){
     <>
     <Announcement />
     <Navbar />
+   {isLoading && <Loader />}
     <Container>
       
         <Wrapper>

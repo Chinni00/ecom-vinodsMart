@@ -4,8 +4,9 @@ import Navbar from "../Components/Navbar"
 import Announcement from "../Components/Announcement"
 import { useNavigate } from "react-router-dom"
 import { useRef } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { cartActions } from "../store/Reducer"
+import Loader from "./Loader"
 
 
 const Container=styled.div`
@@ -58,13 +59,14 @@ cursor: pointer;
 
 const Login = () => {
 
+  const isLoading = useSelector(state=>state.cart.isLoading);
   const inputEmailRef = useRef();
   const inputPasswordRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginHandler=(e)=>{
    e.preventDefault();
-
+   dispatch(cartActions.setLoader(true))
    const enteredEmail = inputEmailRef.current.value;
    const enteredPassword = inputPasswordRef.current.value;
    
@@ -78,6 +80,7 @@ const Login = () => {
       'Content-Type':'application/json'
     }
    }).then(res=>{
+    dispatch(cartActions.setLoader(false))
         if(res.ok){
           res.json().then(data=>{
             localStorage.setItem('token',data.idToken)
@@ -100,11 +103,12 @@ const Login = () => {
     <>
     <Announcement />
     <Navbar />
+   {isLoading && <Loader />}
     <Container>
         <Wrapper>
             <Title>SIGN IN</Title>
             <Form onSubmit={loginHandler}>
-                <Input ref={inputEmailRef} placeholder='username' type="email" />
+                <Input ref={inputEmailRef} placeholder='email' type="email" />
                 <Input ref={inputPasswordRef} placeholder='password' type="password" />
                 <Button>LOGIN</Button>  
             </Form>
