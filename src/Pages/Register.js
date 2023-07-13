@@ -67,9 +67,7 @@ const Register = () => {
  const formHandler =(e)=>{
   e.preventDefault();
   dispatch(cartActions.setLoader(true))
-const enteredFname = inputFnameRef.current.value;
-const enteredLname = inputLnameRef.current.value;
-const enteredUserName = inputUserNameRef.current.value;
+
 const enteredEmail = inputEmailRef.current.value;
 const enteredPassword = inputPasswordRef.current.value;
 const enteredConformPassword = inputConformPasswordRef.current.value;

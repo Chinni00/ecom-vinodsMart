@@ -22,6 +22,7 @@ margin: 10px 0px;
 padding: 10px;
 `
 const Container = styled.div`
+
  position: absolute;
  top: 50%;
  left: 50%;

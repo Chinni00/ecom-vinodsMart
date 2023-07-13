@@ -2,9 +2,8 @@ import styled from "styled-components"
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { useState,useContext } from "react";
-import { cartContext } from "../Pages/CartContext";
-import { useDispatch,useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 import { cartActions } from "../store/Reducer";
 
 
@@ -30,7 +29,7 @@ const Container = styled.div`
 flex: 1;
 margin: 5px;
 min-width: 280px;
-height: 400px;
+height: 450px;
 display: flex;
 gap: 10px;
 align-items: center;
@@ -78,10 +77,9 @@ transition: all 0.2s ease;
 }
 `
 const Title = styled.h3`
-position: absolute;
-top: 70%;
+margin-top: 8em;
 text-align: center;
-font-weight: 400;
+font-weight: 300;
 `
 
 const Price =styled.div`
@@ -104,13 +102,13 @@ padding: 5px 15px;
 
 const Product = ({item }) => {
 const dispatch = useDispatch();
-const state = useSelector(state=>state.cart)
+
     // const {addToCart} = useContext(cartContext)
     const handleAddToCart=()=>{
     //    addToCart(item);
     dispatch(cartActions.addItemToCart(item))
     }
-console.log('state',state)
+
   return (
     <Container>
         <Circle >

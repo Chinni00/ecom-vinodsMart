@@ -2,7 +2,7 @@ import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { mobile } from "../Responsive";
-import { Router, Routes, Route, Link } from "react-router-dom";
+import { Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 import Register from "../Pages/Register";
@@ -68,6 +68,7 @@ const Language = styled.span`
 `;
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const token = useSelector(state=>state.cart.token)
   const cartItems = useSelector(state=>state.cart)
@@ -77,7 +78,7 @@ const Navbar = () => {
   const logoutHandler =()=>{
        dispatch(cartActions.setToken(''))
        localStorage.removeItem('token')
-       
+       navigate('/')
   }
   return (
    <>
@@ -96,9 +97,12 @@ const Navbar = () => {
             </Logo>
           </Center>
           <Right>
-            <MenuItem>
+         {token && <MenuItem>
+              <Link to='/home' style={{textDecoration:'none',color:'black'}} >HOME</Link>
+            </MenuItem>}
+           {!token && <MenuItem>
               <Link to='/register' style={{textDecoration:'none',color:'black'}} >REGISTER</Link>
-            </MenuItem>
+            </MenuItem>}
            {!token && <MenuItem>
             <Link to='/' style={{textDecoration:'none',color:'black'}} >LOGIN</Link>
             </MenuItem>}

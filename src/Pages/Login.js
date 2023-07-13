@@ -112,7 +112,7 @@ const Login = () => {
                 <Input ref={inputPasswordRef} placeholder='password' type="password" />
                 <Button>LOGIN</Button>  
             </Form>
-            <Link>FORGET PASSWORD</Link><br />
+            <Link onClick={()=>{navigate('/forgotPassword')}}>FORGET PASSWORD</Link><br />
             <Link onClick={()=>{navigate('/register')}}>CREATE NEW ACCOUNT</Link>
         </Wrapper>
     </Container></>

@@ -16,14 +16,15 @@ justify-content: space-between;
 const Title = styled.h1`
 letter-spacing: 4px;
 padding-top: 10px;
-text-decoration: underline red solid;
+text-decoration: underline  solid;
+
 `
 
 const Products = () => {
   const params = useParams()
 
  let filteredProducts = popularProducts.filter(
-  item => item.category ==params.productName
+  item => item.category ===params.productName
  );
  
   return (

@@ -18,7 +18,7 @@ function App() {
     <div className="App">
     <Routes>
          {token && <Route path='/home' element={<Home />}/>}
-          <Route path='/products/:productName/*' element={<Products />} />
+         {token && <Route path='/products/:productName' element={<Products />} />}
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Login />} />
           <Route path="*" element={<Login />} />
